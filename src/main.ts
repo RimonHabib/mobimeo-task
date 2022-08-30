@@ -1,10 +1,10 @@
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { UserModule } from "./user/user.module";
+import { SearchModule } from "./search/search.module";
 
 async function bootstrap() {
-  const app = await NestFactory.create(UserModule);
+  const app = await NestFactory.create(SearchModule);
   // Set API prefix and versionc
   app.setGlobalPrefix("api/v1");
 
