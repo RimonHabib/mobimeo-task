@@ -1,3 +1,4 @@
+import { ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
@@ -7,6 +8,9 @@ async function bootstrap() {
   const app = await NestFactory.create(SearchModule);
   // Set API prefix and versionc
   app.setGlobalPrefix("api/v1");
+
+  // Set global validator pipe
+  app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   // Enable CORS
   app.enableCors();

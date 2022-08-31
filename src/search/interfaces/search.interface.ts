@@ -2,7 +2,7 @@ import { UserDto } from "../dto/user.dto";
 
 export interface ISearchService {
   configureSearchQuery(searchQuery: ISearchQueryConfig): string;
-  runSearch(): Promise<UserDto>;
+  runSearch(): Promise<UserDto[]>;
 }
 
 export interface ISearchQueryConfig {

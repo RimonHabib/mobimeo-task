@@ -22,20 +22,34 @@ export class SearchService implements ISearchService {
     return searchQueryString;
   }
 
-  runSearch(): Promise<UserDto> {
-    const searchQuery: ISearchQueryConfig = {
-      language: "typescript",
-      perPage: 10,
-      page: 1,
-    };
-    const searchQueryString = this.configureSearchQuery(searchQuery);
-    return axios
-      .get(`https://api.github.com/search/users?${searchQueryString}`)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        throw error;
+  async runSearch(): Promise<UserDto[]> {
+    try {
+      const searchQuery: ISearchQueryConfig = {
+        language: "typescript",
+        perPage: 10,
+        page: 1,
+      };
+
+      const users = await axios.get(this.configureSearchQuery(searchQuery));
+      const toBeFectchedUsers = users.data.items.map((user) => {
+        return axios.get(user.url);
       });
+
+      const fetchedProfiles = await Promise.all(toBeFectchedUsers);
+      return fetchedProfiles
+        .map((profile) => {
+          return profile.data;
+        })
+        .map((user) => {
+          return {
+            username: user.login,
+            name: user.name,
+            avatarUrl: user.avatar_url,
+            followers: user.followers,
+          };
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
