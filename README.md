@@ -21,22 +21,9 @@
 ```
 git clone git@github.com:RimonHabib/mobimeo-task.git
 ```
-## Install dependencies
-```
-npm install
-```
 ## Setting up the environment variables
 > Copy the .env.example file to .env and fill in the values.
 
-## Run the unit tests
-```
-npm run test
-```
-
-## Run the end-to-end tests
-```
-npm run test:e2e
-```
 
 # Running the application
 
@@ -51,8 +38,9 @@ docker build -t mobimeo-task .
 docker run -p 3000:3000 --name mobimeo-task -d mobimeo-task
 ```
 
-## Without Docker
+## With npm
 ```
+npm install
 npm run build
 npm run start:prod
 ```
@@ -61,12 +49,19 @@ npm run start:prod
 Browse
 http://localhost:3000/api/v1/search?language=javascript
 
-## Query options
-```
-language=TypeScript // language to search for
-perPage=10 // number of results per page, Max: 100, default: 10
-page=1 // page number
-```
+## API Documentation
+Browse http://localhost:3000/swagger
 
 ## Example with TypeScript, perPage=50, page=2
 Browse http://localhost:3000/api/v1/search?language=TypeScript&perPage=50&page=2
+
+
+## Run the unit tests
+```
+npm run test
+```
+
+## Run the end-to-end tests
+```
+npm run test:e2e
+```
