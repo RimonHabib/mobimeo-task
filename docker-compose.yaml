@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      args:
+        - APP_ENV
+    command: npm run start:dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules/
+    environment:
+      APP_ENV: ${APP_ENV}
+      APP_PORT: ${APP_PORT}
+      GITHUB_ACCESS_TOKEN: ${GITHUB_ACCESS_TOKEN}
+volumes:
+  node_modules: null

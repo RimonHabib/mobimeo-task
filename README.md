@@ -1,5 +1,4 @@
-# mobimeo-task
-
+#  Mobimeo Backend Task
 
 - Create a service which provides a single API endpoint to search for GitHub users by the programming language they use in their public repositories (i.e. C, Java, Haskell)
 
