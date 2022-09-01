@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
-import { IsNotEmpty, IsString } from "class-validator";
+import { Expose, Type } from "class-transformer";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class SearchRequestDto {
   @Expose()
@@ -14,14 +14,26 @@ export class SearchRequestDto {
   language: string;
 
   @Expose()
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: "Number of results per page",
     example: 30,
     default: 10,
+    maximum: 100,
   })
+  @IsNumber()
+  @IsOptional()
+  @Type(() => Number)
   perPage?: number;
 
   @Expose()
-  @ApiPropertyOptional({ description: "Page number", example: 1, default: 1 })
-  page: number;
+  @ApiProperty({
+    description: "Page number",
+    example: 1,
+    default: 1,
+    required: false,
+  })
+  @IsNumber()
+  @IsOptional()
+  @Type(() => Number)
+  page?: number;
 }

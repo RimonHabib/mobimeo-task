@@ -4,15 +4,22 @@ import { UserDto } from "./user.dto";
 
 export class SearchResponseDto {
   @Expose()
-  users: UserDto;
+  @ApiProperty({ type: [UserDto] })
+  users: UserDto[];
 
   @Expose()
   @ApiProperty({
-    description: "number of results per page",
-    example: 30,
-    default: 10,
+    description: "Total number of records found",
+    example: 3453,
   })
   totalCount: number;
+
+  @Expose()
+  @ApiProperty({
+    description: "number of results in the resoponse",
+    example: 10,
+  })
+  count: number;
 
   @Expose()
   @ApiProperty({ description: "Page number", example: 1, default: 1 })
