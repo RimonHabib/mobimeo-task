@@ -4,19 +4,28 @@ import { SearchController } from "./search.controller";
 
 describe("UserController", () => {
   let searchController: SearchController;
+  const mockSearchService = {
+    runSearch: jest.fn(),
+  };
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [SearchController],
-      providers: [SearchService],
+      providers: [{ provide: SearchService, useValue: mockSearchService }],
     }).compile();
 
     searchController = app.get<SearchController>(SearchController);
   });
 
-  // describe("root", () => {
-  //   it('should return "Hello World!"', () => {
-  //     expect(searchController.getHello()).toBe("Hello World!");
-  //   });
-  // });
+  it("should be defined", () => {
+    expect(searchController).toBeDefined();
+  });
+
+  describe("runSearch", () => {
+    it("should call runSearch on the service", async () => {
+      const query = { language: "javascript", perPage: 10, page: 1 };
+      await searchController.searchUser(query);
+      expect(mockSearchService.runSearch).toHaveBeenCalled();
+    });
+  });
 });
