@@ -19,7 +19,7 @@ async function bootstrap() {
 
   // Configure Swagger
   const options = new DocumentBuilder()
-    .setTitle("Erasys Password Validator")
+    .setTitle("Search API")
     .setDescription("API description")
     .setVersion("1.0")
     .build();
