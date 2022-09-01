@@ -18,35 +18,55 @@
 
 # Solution
 ## Clone the repository
-
 ```
 git clone git@github.com:RimonHabib/mobimeo-task.git
 ```
 ## Install dependencies
-
 ```
 npm install
 ```
-## Run the unit tests
+## Setting up the environment variables
+> Copy the .env.example file to .env and fill in the values.
 
+## Run the unit tests
 ```
 npm run test
 ```
 
 ## Run the end-to-end tests
-
 ```
 npm run test:e2e
 ```
 
-## Build the Docker image
+# Running the application
 
+## With Docker compose
+```
+docker-compose up
+```
+
+## With Docker
 ```
 docker build -t mobimeo-task .
-```
-## Run the Docker image
-
-```
-docker run -p 3000:3000 mobimeo-task
+docker run -p 3000:3000 --name mobimeo-task -d mobimeo-task
 ```
 
+## Without Docker
+```
+npm run build
+npm run start:prod
+```
+
+## Access Search API
+Browse
+http://localhost:3000/api/v1/search?language=javascript
+
+## Query options
+```
+language=TypeScript // language to search for
+perPage=10 // number of results per page, Max: 100, default: 10
+page=1 // page number
+```
+
+## Example with TypeScript, perPage=50, page=2
+Browse http://localhost:3000/api/v1/search?language=TypeScript&perPage=50&page=2
