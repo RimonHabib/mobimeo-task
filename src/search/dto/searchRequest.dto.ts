@@ -19,6 +19,7 @@ export class SearchRequestDto {
     example: 30,
     default: 10,
     maximum: 100,
+    required: false,
   })
   @IsNumber()
   @IsOptional()
