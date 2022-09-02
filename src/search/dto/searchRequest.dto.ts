@@ -7,7 +7,7 @@ export class SearchRequestDto {
   @ApiProperty({
     required: true,
     description: "Programming language to search",
-    example: "typescript",
+    example: "TypeScript",
   })
   @IsString()
   @IsNotEmpty()
